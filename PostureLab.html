@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PostureLab | Feria TP</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap"
+        rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="static/css/style.css">
+</head>
+
+<body>
+
+    <nav class="navbar navbar-expand-lg navbar-dark sticky-top glass-nav" id="mainNav">
+        <div class="container">
+            <a class="navbar-brand brand-mark" href="#">
+                <img src="static/resources/images/logo.png" alt="PostureLab" class="brand-logo">
+                Posture<span class="text-gradient">Lab</span>
+            </a>
+            <button class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#menu" aria-label="Abrir menú">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="menu">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a id="navProyecto" class="nav-link" href="#proyecto">Proyecto</a></li>
+                    <li class="nav-item"><a id="navFuncionamiento" class="nav-link" href="#funciona">Funcionamiento</a>
+                    </li>
+                    <li class="nav-item"><a id="navTecnologias" class="nav-link" href="#tecnologias">Tecnologías</a>
+                    </li>
+                    <li class="nav-item"><a id="navBeneficios" class="nav-link" href="#beneficios">Beneficios</a></li>
+                </ul>
+                <button id="btnIdioma" onclick="alternarIdioma()" class="btn btn-outline-cyan ms-lg-3 mt-2 mt-lg-0">🇺🇸
+                    English</button>
+            </div>
+        </div>
+    </nav>
+
+    <section class="hero-section text-light">
+
+        <div class="hero-bg" aria-hidden="true">
+            <div class="glow-orb g1"></div>
+            <div class="glow-orb g2"></div>
+            <span class="pose-node n1" style="top:18%; left:6%;"></span>
+            <span class="pose-node n2" style="top:68%; left:12%;"></span>
+            <span class="pose-node n3" style="top:30%; left:46%;"></span>
+            <span class="pose-node n1" style="top:80%; left:52%;"></span>
+            <span class="pose-node n2" style="top:12%; left:63%;"></span>
+        </div>
+
+        <div class="container">
+            <div class="row align-items-center g-5">
+                <div class="col-lg-6 reveal">
+                    <span id="badgeProyecto" class="badge badge-neon mb-3">&lt;/&gt; PROYECTO DE PROGRAMACIÓN</span>
+                    <h1 id="heroTitulo" class="display-4 fw-bold text-gradient mb-4">PostureLab</h1>
+                    <p id="heroTexto" class="lead mb-4 text-secondary">Plataforma inteligente que utiliza Inteligencia
+                        Artificial para evaluar la postura de una persona en tiempo real y entregar recomendaciones
+                        ergonómicas.</p>
+                    <div class="d-flex flex-wrap gap-3">
+                        <a href="#proyecto" id="heroBoton" class="btn btn-cyan btn-lg">Conocer Proyecto <i
+                                class="bi bi-arrow-right"></i></a>
+                    </div>
+                    <div class="d-flex flex-wrap gap-2 mt-4 text-secondary small hero-stats">
+                        <span id="stat1"><i class="bi bi-activity text-success"></i> Análisis en tiempo real</span>
+                        <span id="stat2"><i class="bi bi-shield-lock text-primary"></i> Privacidad asegurada</span>
+                        <span id="stat3"><i class="bi bi-emoji-smile text-purple"></i> Fácil de usar</span>
+                    </div>
+                </div>
+
+                <div class="col-lg-6 reveal">
+                    <div class="dashboard-mockup glass-card p-3">
+                        <div class="d-flex justify-content-between align-items-center mb-3">
+                            <div class="text-gradient fw-bold"><i class="bi bi-person-workspace"></i> POSTURE LAB</div>
+                            <div class="d-flex gap-2">
+                                <div class="status-dot red"></div>
+                                <div class="status-dot yellow"></div>
+                                <div class="status-dot green"></div>
+                            </div>
+                        </div>
+                        <div class="row g-3">
+                            <div class="col-md-8">
+                                <div class="video-container rounded overflow-hidden position-relative">
+                                    <img src="static/resources/images/Camara.png" alt="Demo" class="img-fluid w-100"
+                                        style="object-fit:cover; height:300px; opacity:0.8;">
+                                    <div id="dashPostura" class="overlay-box text-danger border-danger"><i
+                                            class="bi bi-x-circle"></i> Postura: Incorrecta</div>
+                                </div>
+                                <div class="d-flex justify-content-between mt-3 text-secondary small">
+                                   <span id="dashTiempo">Tiempo: 00:02:15</span>
+                                    <span id="dashDetener" class="text-danger"><i class="bi bi-stop-fill"></i> Detener
+                                        análisis</span>
+                                    <span>FPS: 30</span>
+                                </div>
+                            </div>
+                            <div class="col-md-4 d-flex flex-column gap-3">
+                                <div class="glass-panel p-3 rounded">
+                                    <h6 id="dashTituloCorr" class="text-light mb-3">Corrección recomendada</h6>
+                                    <ul class="list-unstyled text-secondary small mb-0">
+                                        <li id="dashCorr1" class="mb-2"><i
+                                                class="bi bi-diamond-fill text-success me-1"></i> Endereza la espalda
+                                        </li>
+                                        <li id="dashCorr2" class="mb-2"><i
+                                                class="bi bi-diamond-fill text-danger me-1"></i> Mantén los hombros
+                                            relajados</li>
+                                        <li id="dashCorr3"><i class="bi bi-diamond-fill text-danger me-1"></i> Eleva la
+                                            pantalla</li>
+                                    </ul>
+                                </div>
+                                <div class="glass-panel p-3 rounded text-center">
+                                    <h6 id="dashPuntuacion" class="text-light mb-3">Puntuación</h6>
+                                    <div class="score-ring" style="--pct:45;">
+                                        <div class="score-ring-inner">
+                                            <span class="fw-bold text-warning"
+                                                style="font-size:1.3rem; line-height:1;">45</span>
+                                            <span class="text-secondary" style="font-size:0.65rem;">/100</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <section id="proyecto" class="py-5">
+        <div class="container">
+            <div class="row g-5 align-items-center glass-card p-5 reveal">
+                <div class="col-lg-6">
+                    <span id="eyebrowProyecto" class="eyebrow">Proyecto</span>
+                    <h2 id="tituloProyecto" class="fw-bold mb-4">¿Qué es <span class="text-gradient">Posture Lab?</span>
+                    </h2>
+                    <p id="textoProyecto" class="text-secondary lead">PostureLab es una plataforma que analiza la
+                        postura de una persona utilizando visión por computadora e Inteligencia Artificial. El sistema
+                        detecta malas posturas, entrega recomendaciones ergonómicas y almacena el historial de
+                        evaluaciones para ayudar a mejorar los hábitos posturales.</p>
+                    <div class="glass-panel p-3 mt-4 d-inline-block border-left-cyan">
+                        <div class="d-flex align-items-center gap-3">
+                            <i class="bi bi-lightbulb text-warning fs-3"></i>
+                            <div>
+                                <h6 id="objTitulo" class="mb-0 text-light">Nuestro objetivo</h6>
+                                <small id="objTexto" class="text-secondary">Prevenir problemas de salud causados por
+                                    malas posturas.</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6 text-center">
+                    <img src="static/resources/images/Analisis.png" alt="Illustration"
+                        class="img-fluid rounded glow-image">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-5">
+        <div class="container">
+            <div class="section-heading reveal">
+                <span id="eyebrowProblema" class="eyebrow">El problema</span>
+                <h2 id="tituloProblema" class="fw-bold">Problema</h2>
+            </div>
+            <div class="row g-4">
+                <div class="col-md-4 reveal">
+                    <div class="glass-card p-4 h-100 text-center hover-glow">
+                        <div class="joint mx-auto mb-3"><i class="bi bi-clock-history text-cyan"></i></div>
+                        <h4 id="problema1Titulo" class="text-light">Largas jornadas</h4>
+                        <p id="problema1Texto" class="text-secondary mb-0">Muchas personas permanecen más de 8 horas
+                            frente al computador.</p>
+                    </div>
+                </div>
+                <div class="col-md-4 reveal">
+                    <div class="glass-card p-4 h-100 text-center hover-glow">
+                        <div class="joint mx-auto mb-3"><i class="bi bi-exclamation-triangle text-purple"></i></div>
+                        <h4 id="problema2Titulo" class="text-light">Malos hábitos</h4>
+                        <p id="problema2Texto" class="text-secondary mb-0">Una postura incorrecta puede provocar dolores
+                            de espalda, cuello y hombros.</p>
+                    </div>
+                </div>
+                <div class="col-md-4 reveal">
+                    <div class="glass-card p-4 h-100 text-center hover-glow">
+                        <div class="joint mx-auto mb-3"><i class="bi bi-heart-pulse text-success"></i></div>
+                        <h4 id="problema3Titulo" class="text-light">Prevención</h4>
+                        <p id="problema3Texto" class="text-secondary mb-0">Detectar malas posturas a tiempo ayuda a
+                            prevenir lesiones musculoesqueléticas.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="funciona" class="py-5">
+        <div class="container">
+            <div class="section-heading reveal">
+                <span id="eyebrowProceso" class="eyebrow">El proceso</span>
+                <h2 id="tituloFuncionamiento" class="fw-bold mb-3">¿Cómo funciona?</h2>
+                <p id="funcionDescripcion" class="text-secondary mb-0">El proceso de PostureLab se divide en cinco
+                    etapas principales.</p>
+            </div>
+
+            <div class="timeline-wrap">
+                <div class="timeline-spine"></div>
+                <div class="row g-4">
+                    <div class="col-lg-4 col-md-6 reveal">
+                        <div class="glass-card p-4 h-100 text-center hover-glow border-top-cyan">
+                            <div class="step-node">1</div>
+                            <h5 id="funcion1Titulo" class="text-light">1. Captura</h5>
+                            <p id="funcion1Texto" class="text-secondary mb-0">La cámara registra la postura del usuario
+                                en tiempo real.</p>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-6 reveal">
+                        <div class="glass-card p-4 h-100 text-center hover-glow border-top-purple">
+                            <div class="step-node">2</div>
+                            <h5 id="funcion2Titulo" class="text-light">2. Detección</h5>
+                            <p id="funcion2Texto" class="text-secondary mb-0">MediaPipe identifica hombros, cuello y
+                                espalda mediante visión artificial.</p>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-6 reveal">
+                        <div class="glass-card p-4 h-100 text-center hover-glow border-top-success">
+                            <div class="step-node">3</div>
+                            <h5 id="funcion3Titulo" class="text-light">3. Análisis</h5>
+                            <p id="funcion3Texto" class="text-secondary mb-0">Se calculan los ángulos corporales para
+                                evaluar la postura.</p>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 reveal">
+                        <div class="glass-card p-4 h-100 text-center hover-glow border-top-warning">
+                            <div class="step-node">4</div>
+                            <h5 id="funcion4Titulo" class="text-light">4. Evaluación</h5>
+                            <p id="funcion4Texto" class="text-secondary mb-0">El sistema clasifica la postura utilizando
+                                un semáforo ergonómico.</p>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 reveal">
+                        <div class="glass-card p-4 h-100 text-center hover-glow border-top-cyan">
+                            <div class="step-node">5</div>
+                            <h5 id="funcion5Titulo" class="text-light">5. Historial</h5>
+                            <p id="funcion5Texto" class="text-secondary mb-0">Se almacenan las evaluaciones para
+                                observar la evolución del usuario.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="tecnologias" class="py-5">
+        <div class="container">
+            <div class="section-heading reveal">
+                <span id="eyebrowStack" class="eyebrow">Stack técnico</span>
+                <h2 id="tituloTecnologias" class="fw-bold">Tecnologías utilizadas</h2>
+            </div>
+            <div class="glass-card p-4 d-flex flex-wrap justify-content-center gap-3 reveal">
+                <div class="tech-badge"><i class="bi bi-filetype-py text-warning"></i> Python</div>
+                <div class="tech-badge"><i class="bi bi-box-seam text-light"></i> Flask</div>
+                <div class="tech-badge"><i class="bi bi-eye text-danger"></i> OpenCV</div>
+                <div class="tech-badge"><i class="bi bi-cpu text-info"></i> MediaPipe</div>
+                <div class="tech-badge"><i class="bi bi-database text-primary"></i> MySQL</div>
+                <div class="tech-badge"><i class="bi bi-bootstrap text-purple"></i> Bootstrap 5</div>
+                <div class="tech-badge"><i class="bi bi-filetype-js text-warning"></i> JavaScript</div>
+                <div class="tech-badge"><i class="bi bi-memory text-secondary"></i> ESP32</div>
+            </div>
+        </div>
+    </section>
+
+    <section id="beneficios" class="py-5">
+        <div class="container">
+            <div class="section-heading reveal">
+                <span id="eyebrowResultados" class="eyebrow">Resultados</span>
+                <h2 id="tituloBeneficios" class="fw-bold">Beneficios</h2>
+            </div>
+            <div class="row g-4">
+                <div class="col-md-6 reveal">
+                    <div class="glass-card p-4 h-100">
+                        <ul class="list-unstyled text-secondary mb-0">
+                            <li id="beneficio1" class="benefit-item"><span class="benefit-icon"><i
+                                        class="bi bi-check-lg"></i></span> Detecta malas posturas en tiempo real.</li>
+                            <li id="beneficio2" class="benefit-item"><span class="benefit-icon"><i
+                                        class="bi bi-check-lg"></i></span> Recomienda mejoras ergonómicas.</li>
+                            <li id="beneficio3" class="benefit-item"><span class="benefit-icon"><i
+                                        class="bi bi-check-lg"></i></span> Guarda el historial de evaluaciones.</li>
+                            <li id="beneficio4" class="benefit-item"><span class="benefit-icon"><i
+                                        class="bi bi-check-lg"></i></span> Hardware de bajo costo.</li>
+                            <li id="beneficio5" class="benefit-item"><span class="benefit-icon"><i
+                                        class="bi bi-check-lg"></i></span> Fácil implementación.</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-md-6 reveal">
+                    <div class="glass-card p-4 h-100 border-left-purple">
+                        <h4 id="tituloAplicaciones" class="text-light mb-3">Aplicaciones</h4>
+                        <p id="textoAplicaciones" class="text-secondary lh-lg mb-0">
+                            • Oficinas<br>
+                            • Estudiantes<br>
+                            • Programadores<br>
+                            • Teletrabajo<br>
+                            • Gamers<br>
+                            • Empresas
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="py-5 mt-5">
+        <div class="container text-center">
+            <h4 id="footerTitulo" class="text-gradient fw-bold mb-2">PostureLab</h4>
+            <p id="footerSubtitulo" class="text-secondary mb-4">Plataforma Inteligente de Evaluación Postural</p>
+            <p id="footerEquipo" class="text-secondary small mb-1">Equipo: Daniel Jiménez, Sergio Bustos, Camilo Díaz,
+                Martin Rojas, Benjamin Delgado</p>
+            <p id="footerFeria" class="text-secondary small">Feria TP • 2026</p>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="static/js/app.js"></script>
+    <script src="static/js/traductor.js"></script>
+</body>
+
+</html>
